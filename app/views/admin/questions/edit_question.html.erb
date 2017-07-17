@@ -1,0 +1,34 @@
+<% provide(:title, 'Edit question') %>
+<h1>Edit question</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@question, url: admin_question_path(@question)) do |f| %>
+
+    <%= f.label :Question %>
+    <%= f.text_field :question, :value => @question.question, class: 'form-control' %><br>
+
+    <%= f.label :option1 %>
+    <%= f.text_field :option1, :value => @question.option1, class: 'form-control' %><br>
+
+    <%= f.label :option2 %>
+    <%= f.text_field :option2, :value => @question.option2, class: 'form-control' %><br>
+
+    <%= f.label :Option3 %>
+    <%= f.text_field :option3, :value => @question.option3, class: 'form-control' %><br>
+
+    <%= f.label :Option4 %>
+    <%= f.text_field :option4, :value => @question.option4, class: 'form-control' %><br>
+
+    <%= f.label :Answer %>
+    <%= f.text_field :answer, :value => @question.answer, class: 'form-control' %><br>
+
+    <%#= f.hidden_field :exam_id, :value => params[:id] %>
+
+    <%= f.submit "Update Question", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to 'Show', @exam %> |
+<%= link_to 'Back', exams_path %>

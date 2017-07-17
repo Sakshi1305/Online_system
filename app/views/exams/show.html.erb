@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  
+  <%= @exam.title %>
+</p>
+
+<strong>List of Question </strong><br>
+<%= form_for (:question) do |f| %>
+  <% qNo = 0 %>
+
+  <% @exam_questions.each do |x| %>
+
+
+   <%= qNo += 1 %>
+   <%= x.question %>   
+             
+   <p>
+     A).<%= f.radio_button x.id,'A'%> 
+     <%= x.option1 %>
+   </p>
+   <p>
+     B).<%= f.radio_button x.id, 'B' %>
+     <%= x.option2 %>
+   </p>
+   <p>
+     C).<%= f.radio_button x.id, 'C' %>
+     <%= x.option3 %>
+   </p>
+   <p>
+     D).<%= f.radio_button x.id, 'D' %>
+     <%= x.option4 %>
+   </p>
+   <%= link_to 'Edit', edit_question_path(x.id) %> </br>
+  <% end %>
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_exam_path(@exam) %> |
+<%= link_to 'Back', exams_path %>

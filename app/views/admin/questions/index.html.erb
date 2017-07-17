@@ -1,0 +1,8 @@
+ <h1>List of Exams:</h1>
+</br>
+<%@exams.each do |exam|%>
+<%= link_to exam.title, admin_question_path(exam.id)%></br>
+
+<div><%= link_to "Start Exam", admin_question_path(exam.id), class: "btn btn-sm btn-primary" %></div></br>
+<%end%> 
+

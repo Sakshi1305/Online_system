@@ -1,0 +1,33 @@
+
+<strong>List of Question </strong><br>
+
+<%= form_for(:question, url: result_path) do |f| %>
+  <% qNo = 0 %>
+  
+  <%= f.hidden_field :exam_id, :value => params[:id] %>
+  
+ 
+  <% @exam_questions.each do |x| %>
+    <%= qNo += 1 %>
+    <%= x.question %>   
+             
+    <p>
+      A).<%= f.radio_button x.id, 'A'%> 
+      <%= x.option1 %>
+    </p>
+    <p>
+      B).<%= f.radio_button x.id, 'B' %>
+      <%= x.option2 %>
+    </p>
+    <p>
+      C).<%= f.radio_button x.id, 'C' %>
+      <%= x.option3 %>
+    </p>
+    <p>
+      D).<%= f.radio_button x.id, 'D' %>
+      <%= x.option4 %>
+    </p>
+  <% end %>
+  <%= f.submit 'Submit' %>
+<% end %>
+

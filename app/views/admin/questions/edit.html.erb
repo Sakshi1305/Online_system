@@ -1,0 +1,33 @@
+<% provide(:title, 'Add question') %>
+<h1>Add question</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@question,url: admin_question_path(@question)) do |f| %>
+
+    <%= f.label :Question %>
+    <%= f.text_field :question, class: 'form-control' %><br>
+
+    <%= f.label :option1 %>
+    <%= f.text_field :option1, class: 'form-control' %><br>
+
+    <%= f.label :option2 %>
+    <%= f.text_field :option2, class: 'form-control' %><br>
+
+
+    <%= f.label :Option3 %>
+    <%= f.text_field :option3, class: 'form-control' %><br>
+
+    <%= f.label :Option4 %>
+    <%= f.text_field :option4, class: 'form-control' %><br>
+
+    <%= f.label :Answer %>
+    <%= f.text_field :answer, class: 'form-control' %><br>
+
+    
+    <%= f.submit "Add Question", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+<%= link_to 'Show', @exam %> |
+<%= link_to 'Back', exams_path %>
