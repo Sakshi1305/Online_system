@@ -1,0 +1,46 @@
+<div class='form_heading dashboard_form''>
+  <h1>Settings</h1>
+  <div class="frm_setting_col">
+    <div class="col-md-4 col-md-offset-4">
+      <%= form_for(@user, url: user_path, method: 'put', html: { class: '' }) do |f| %>
+        <% if @user.errors.any? %>
+          <div id='error_explanation'>
+            <ul>
+              <% @user.errors.each do |attri, msg| %>
+                <li>
+                  <%= attri %> <%= msg %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class='form-group'>
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :email %>
+          <%= f.email_field :email, class: 'form-control' %>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+
+        <div class='form-group'>
+          <%= f.label :password_confirmation, "Confirmation" %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+        </div>
+
+        <div class='actions'>
+          <%#= f.submit 'Update', class: 'btn btn-md btn-primary default_btn' %>
+          <button name="button" type="submit">Update</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

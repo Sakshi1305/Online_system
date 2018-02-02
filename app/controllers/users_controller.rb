@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user,only: [:edit, :update, :destroy]
   before_action :correct_user,  only: [:edit, :update]
-  before_action :admin_user, only: :destroy 
+  before_action :admin_user, only: :destroy
   def new
     redirect_to root_url if current_user
   	@user = User.new
@@ -14,19 +14,23 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
-      redirect_to login_url
+      UserMailer.registration_confirmation(@user).deliver
+      flash[:success] = "Please confirm your email address to continue"
+      redirect_to root_url
   	else
+      flash[:error] = "Ooooppss, something went wrong!"
   		render 'new'
   	end
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def index
     @users = User.all
   end
- 
+
 
   def update
     @user = User.find(params[:id])
@@ -35,13 +39,26 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'edit'
-    end 
+    end
   end
 
   def destroy
     User.find(params[:id]).destroy
     flash[:success]="User deleted"
     redirect_to users_url
+  end
+
+  def confirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate
+      flash[:success] = "Welcome to the Sample App! Your email has been confirmed.
+      Please sign in to continue."
+      redirect_to login_url
+    else
+      flash[:error] = "Sorry. User does not exist"
+      redirect_to root_url
+    end
   end
 
   private

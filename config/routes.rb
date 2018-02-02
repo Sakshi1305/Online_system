@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  
+  resources :exams
+
   get '/edit_question/:id' , to: 'admin/questions#edit_question', as: :edit_question
 
   get 'sessions/new'
@@ -15,10 +16,16 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :questions
   end
-  
+
+  resources :users do
+    member do
+      get :confirm_email
+    end
+  end
+
   post '/result', to: 'admin/questions#result'
   resources :results
   get '/show', to: 'results#show'
 end
-  
- 
+
+

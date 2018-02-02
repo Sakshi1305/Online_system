@@ -1,0 +1,23 @@
+<h3>
+  Total no. of User
+</h3>
+<table border="1">
+  <tr>
+     <th>Name</th>
+     <th>Email ID</th>
+     <th>Total mark</th>
+  </tr>
+    <% @results.each do |r| %>
+        <tr align="center">
+            <td>
+              <%= r.user.name %>
+            </td>
+            <td>
+              <%= r.user.email %>
+            </td>
+            <td>
+              <%= r.mark %>
+            </td>
+        </tr>
+    <% end %>
+</table>

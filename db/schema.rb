@@ -10,19 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210050538) do
+ActiveRecord::Schema.define(version: 20170718094504) do
 
   create_table "exams", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "options", force: :cascade do |t|
-    t.integer  "question_id"
-    t.integer  "option_no"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "questions", force: :cascade do |t|
@@ -54,20 +47,22 @@ ActiveRecord::Schema.define(version: 20170210050538) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "password_digest"
-    t.boolean  "admin",                  default: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.boolean  "admin",                  default: true
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "email"
+    t.boolean  "email_confirmed"
+    t.string   "confirm_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
